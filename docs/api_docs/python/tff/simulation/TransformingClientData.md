@@ -32,7 +32,7 @@ be the identity, while f(x, 1) could be the reflection of the image.
 __init__(
     raw_client_data,
     transform,
-    expansion_factor
+    num_transformed_clients
 )
 ```
 
@@ -43,10 +43,11 @@ Initializes the TransformingClientData.
 *   <b>`raw_client_data`</b>: A ClientData to expand.
 *   <b>`transform`</b>: A function f(x, i) mapping datapoint x to a new
     datapoint parameterized by i.
-*   <b>`expansion_factor`</b>: The (expected) number of transformed clients per
-    raw client. If not an integer, each client is mapped to at least
-    int(expansion_factor) new clients, and some fraction of clients are mapped
-    to one more.
+*   <b>`num_transformed_clients`</b>: The number of transformed clients to
+    produce. If it is an integer multiple k of the number of real clients, there
+    will be exactly k pseudo-clients per real client, with indices 0...k-1. Any
+    remainder g will be generated from the first g real clients and will be
+    given index k.
 
 ## Properties
 
